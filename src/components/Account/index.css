@@ -1,0 +1,101 @@
+.account-bg-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.account-details-bg-container {
+  margin-left: 32px;
+  width: 80%;
+}
+
+.account-details-title {
+  margin-top: 20px;
+  font-family: 'Roboto';
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.account-details-horizontal-line {
+  border: 1px solid #e5e5e5;
+  background-color: #e5e5e5;
+}
+
+.account-details-membership-container {
+  width: 300px;
+  display: flex;
+}
+
+.account-details-membership-plan-title {
+  color: #94a3b8;
+  width: 150px;
+  font-family: 'Roboto';
+  font-size: 20px;
+  font-weight: 600;
+  margin-right: 20px;
+}
+
+.account-details-plan-container {
+  display: flex;
+}
+
+.account-details-membership-email-container {
+  display: flex;
+  align-items: center;
+}
+
+.account-details-membership-details-container {
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.account-details-email-plan {
+  color: #1e293b;
+  font-family: 'Roboto';
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.account-details-password {
+  color: #64748b;
+  font-family: 'Roboto';
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.account-details-plan-button {
+  background-color: transparent;
+  border: 1px solid #1e293b;
+  color: #1e293b;
+  font-family: 'Roboto';
+  font-size: 15px;
+  font-weight: 600;
+  margin: 10px;
+}
+
+.account-details-logout-button-container {
+  text-align: center;
+}
+
+.account-details-logout-button {
+  align-self: center;
+  background-color: red;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  padding: 6px 20px 6px 20px;
+  text-align: center;
+  margin: 30px;
+  cursor: pointer;
+}
+
+.account-navbar-container {
+  width: 100%;
+  background-color: #131313;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

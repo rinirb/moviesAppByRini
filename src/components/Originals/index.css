@@ -1,0 +1,35 @@
+.originals-bg-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.originals-title {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 8px;
+  width: 80%;
+  align-self: center;
+}
+
+@media screen and (min-width: 768px) {
+  .originals-title {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+}
+
+.originals-list-container {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.originals-slider {
+  width: 90%;
+}

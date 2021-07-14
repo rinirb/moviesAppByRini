@@ -1,0 +1,99 @@
+.login-form-bg-container {
+  background-color: #131313;
+  height: 100vh;
+  width: 100%;
+  padding: 32px;
+}
+
+@media screen and (min-width: 768px) {
+  .login-form-bg-container {
+    background-image: url('https://xbox-store-checker.com/assets/upload/game/2019/02/optimize/9wzdncrfj3tj-background.jpg');
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.login-form-movies-title {
+  color: #e50014;
+  font-family: 'San Serif';
+  font-weight: 500;
+  font-size: 40px;
+  padding: 30px;
+  width: 90%;
+  font-weight: 800;
+}
+
+@media screen and (min-width: 768px) {
+  .login-form-movies-title {
+    align-self: flex-start;
+    font-size: 50px;
+  }
+}
+
+.login-form-element {
+  width: 90%;
+  padding: 30px;
+  border-radius: 3px;
+  opacity: 80%;
+}
+
+@media screen and (min-width: 768px) {
+  .login-form-element {
+    width: 40%;
+    background-color: #131313;
+  }
+}
+
+.login-form-signin-title {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 40px;
+}
+
+.login-form-label-element {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.login-form-input-element {
+  height: 40px;
+  background-color: #333333;
+  border-radius: 2px;
+  width: 100%;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  border-radius: 2px;
+}
+
+.input-form-sign-in-button {
+  background-color: #e50914;
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 4px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-right: 20px;
+  padding-left: 20px;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.login-error-message {
+  color: #fb923c;
+  font-family: 'Roboto';
+  font-size: 14px;
+}

@@ -1,0 +1,87 @@
+.lost-your-way-bg-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.lost-your-way-container {
+  background-image: url('https://img.freepik.com/free-photo/beautiful-landscape-alpine-ski-slope-with-working-ski-lift_454047-2144.jpg?size=626&ext=jpg');
+  background-size: cover;
+  min-height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.lost-your-way-title {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 40px;
+  font-weight: 600;
+}
+
+@media screen and (min-width: 768px) {
+  .lost-your-way-title {
+    font-size: 60px;
+  }
+}
+
+@media screen and (min-width: 1120px) {
+  .lost-your-way-title {
+    font-size: 90px;
+  }
+}
+
+.lost-your-way-description {
+  color: #ffffff;
+  width: 400px;
+  font-family: 'Roboto';
+  font-size: 20px;
+  text-align: center;
+  line-height: 30px;
+}
+
+.lost-your-way-netflix-home-button-link {
+  text-decoration: none;
+}
+
+.lost-your-way-netflix-home-button {
+  background-color: #ffffff;
+  outline: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 2px;
+  padding: 12px 24px 12px 24px;
+  font-family: 'Roboto';
+  font-size: 12px;
+}
+
+.lost-your-way-error-message-container {
+  display: flex;
+  align-items: center;
+}
+
+.lost-your-way-error-message-title {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 20px;
+  font-weight: 300;
+  margin: 15px;
+}
+
+.lost-your-way-error-message-code {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 20px;
+  font-weight: 700;
+  margin: 15px;
+}
+
+.lost-your-way-navbar-container {
+  width: 100%;
+  background-color: #131313;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

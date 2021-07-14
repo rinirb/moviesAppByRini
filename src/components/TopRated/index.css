@@ -1,0 +1,35 @@
+.top-rated-bg-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-rated-list-container {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.top-rated-title {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 8px;
+  width: 80%;
+  align-self: center;
+}
+
+@media screen and (min-width: 768px) {
+  .top-rated-title {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+}
+
+.top-rated-slider {
+  width: 90%;
+}
