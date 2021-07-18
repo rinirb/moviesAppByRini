@@ -36,22 +36,22 @@
   width: 90%;
   padding: 30px;
   border-radius: 3px;
-  opacity: 0.8;
 }
 
 @media screen and (min-width: 768px) {
   .login-form-element {
     width: 40%;
-    background-color: #131313;
+    background-color: rgba(19, 19, 19, 0.8);
   }
 }
 
-.login-form-signin-title {
+.login-form-sign-in-title {
   color: #ffffff;
   font-family: 'Roboto';
   font-weight: 500;
   font-size: 32px;
   line-height: 40px;
+  text-align: center;
 }
 
 .login-form-label-element {

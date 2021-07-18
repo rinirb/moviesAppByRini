@@ -21,7 +21,6 @@
 @media screen and (min-width: 768px) {
   .navbar-container-large-device {
     height: 100px;
-    /* background-color: #131313; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -225,4 +224,8 @@
 
 .navbar-link-text-selected {
   font-weight: 600;
+}
+
+.navbar-hide {
+  visibility: hidden;
 }

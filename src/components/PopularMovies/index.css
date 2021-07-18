@@ -154,7 +154,7 @@
 
 .popular-loading-page-container {
   background-color: #131313;
-  min-height: 90vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;

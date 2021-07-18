@@ -11,7 +11,7 @@ class LostYourWay extends Component {
     return (
       <div className="lost-your-way-bg-container">
         <div className="lost-your-way-navbar-container">
-          <Navbar />
+          <Navbar selectedPage="lostYourWay" />
         </div>
         <div className="lost-your-way-container">
           <h1 className="lost-your-way-title">Lost Your Way ?</h1>

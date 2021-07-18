@@ -46,43 +46,6 @@ class Home extends Component {
     )
   }
 
-  renderRandomOriginals = () => {
-    const {
-      originalsMovieDetails,
-      randomOriginalPosterNumber,
-      originalsDataAvailable,
-    } = this.state
-
-    let originalsTopPosterDetails =
-      originalsMovieDetails[randomOriginalPosterNumber]
-
-    if (originalsDataAvailable === false) {
-      this.getRandomOriginals()
-    }
-    originalsTopPosterDetails =
-      originalsMovieDetails[randomOriginalPosterNumber]
-    const {title, overview, posterPath} = originalsTopPosterDetails
-
-    const isValidPath = posterPath !== null
-    return (
-      <div>
-        {isValidPath ? (
-          <div className="home-random-originals-container">
-            <div className="home-random-originals-details-container">
-              <div className="home-random-originals-detail-container">
-                <h1 className="home-random-original-title">{title}</h1>
-                <p className="home-random-original-overview">{overview}</p>
-                <button className="home-random-original-button" type="button">
-                  Play
-                </button>
-              </div>
-            </div>
-          </div>
-        ) : null}
-      </div>
-    )
-  }
-
   getRandomOriginals = async () => {
     const url =
       'https://api.themoviedb.org/3/discover/tv?api_key=c06d8d65ccfbe1695147635adf8a5100&include_adult=false'
@@ -123,11 +86,48 @@ class Home extends Component {
     )
   }
 
+  renderRandomOriginals = () => {
+    const {
+      originalsMovieDetails,
+      randomOriginalPosterNumber,
+      originalsDataAvailable,
+    } = this.state
+
+    let originalsTopPosterDetails =
+      originalsMovieDetails[randomOriginalPosterNumber]
+
+    if (originalsDataAvailable === false) {
+      this.getRandomOriginals()
+    }
+    originalsTopPosterDetails =
+      originalsMovieDetails[randomOriginalPosterNumber]
+    const {title, overview, posterPath} = originalsTopPosterDetails
+
+    const isValidPath = posterPath !== null
+    return (
+      <div>
+        {isValidPath ? (
+          <div className="home-random-originals-container">
+            <div className="home-random-originals-details-container">
+              <div className="home-random-originals-detail-container">
+                <h1 className="home-random-original-title">{title}</h1>
+                <p className="home-random-original-overview">{overview}</p>
+                <button className="home-random-original-button" type="button">
+                  Play
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : null}
+      </div>
+    )
+  }
+
   renderDefaultMovies = () => {
     const {originalsDataAvailable} = this.state
     return (
       <>
-        <div className="home-navbar-originals-container">
+        <div>
           {originalsDataAvailable ? (
             this.renderRandomOriginals()
           ) : (
@@ -165,7 +165,6 @@ class Home extends Component {
         this.setState({
           searchedMovieDetails,
           totalPages,
-
           homePageContentStatus: homePageContentStatusConstants.search,
         })
       } else {
@@ -250,7 +249,7 @@ class Home extends Component {
     )
   }
 
-  renderCurrentPage() {
+  renderCurrentPage = () => {
     const {homePageContentStatus} = this.state
 
     switch (homePageContentStatus) {

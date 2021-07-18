@@ -84,7 +84,7 @@ class Login extends Component {
       <div className="login-form-bg-container">
         <h1 className="login-form-movies-title">MOVIES</h1>
         <form className="login-form-element" onSubmit={this.onSubmitForm}>
-          <h1 className="login-form-signin-title">Sign in</h1>
+          <h1 className="login-form-sign-in-title">Sign in</h1>
           <label className="login-form-label-element" htmlFor="username">
             USERNAME
           </label>
@@ -93,6 +93,7 @@ class Login extends Component {
             className="login-form-input-element"
             type="text"
             id="username"
+            placeholder="Enter your username"
             value={username}
             onChange={this.onChangeUsername}
           />
@@ -105,6 +106,7 @@ class Login extends Component {
             className="login-form-input-element"
             type="password"
             id="password"
+            placeholder="Enter your password"
             value={password}
             onChange={this.onChangePassword}
           />

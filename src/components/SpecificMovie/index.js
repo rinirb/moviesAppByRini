@@ -20,16 +20,133 @@ const initialValues = {
   isDataFetched: false,
 }
 
+const specificMoviePageContentStatusConstants = {
+  initial: 'INITIAL',
+  search: 'SEARCH',
+  noresults: 'NORESULTS',
+}
+
 class SpecificMovie extends Component {
   state = {
     specificMovieDetails: initialValues,
     similarMovieDetails: [],
     isLoading: true,
+    pageNumber: 1,
+    totalPages: null,
+    searchMovie: '',
+    searchedMovieDetails: [],
+    specificMoviePageContentStatus:
+      specificMoviePageContentStatusConstants.initial,
   }
 
   componentDidMount() {
     this.getSpecificMovieDetails()
     this.getSimilarMovieDetails()
+  }
+
+  onSearchMovie = searchMovie => {
+    this.setState(
+      {
+        searchMovie,
+      },
+      this.getSearchedMovies,
+    )
+  }
+
+  onClickPreviousPage = () => {
+    const {pageNumber} = this.state
+    if (pageNumber - 1 > 0) {
+      this.setState(
+        previousState => ({
+          pageNumber: previousState.pageNumber - 1,
+        }),
+        this.getSearchedMovies,
+      )
+    }
+  }
+
+  onClickNextPage = () => {
+    const {totalPages, pageNumber} = this.state
+    if (pageNumber + 1 <= totalPages) {
+      this.setState(
+        previousState => ({
+          pageNumber: previousState.pageNumber + 1,
+        }),
+        this.getSearchedMovies,
+      )
+    }
+  }
+
+  getSearchedMovies = async () => {
+    const {searchMovie, pageNumber} = this.state
+    if (searchMovie !== '') {
+      const url = `https://api.themoviedb.org/3/search/movie?api_key=c06d8d65ccfbe1695147635adf8a5100&language=en-US&query=${searchMovie}&page=${pageNumber}&include_adult=false`
+      const options = {
+        method: 'GET',
+      }
+      const response = await fetch(url, options)
+      const data = await response.json()
+
+      const totalPages = data.total_pages
+
+      const searchedMovieDetails = data.results.map(eachMovie => ({
+        id: eachMovie.id,
+        title: eachMovie.title,
+        posterPath: eachMovie.poster_path,
+      }))
+
+      const numberOfSearchResults = searchedMovieDetails.length
+      if (numberOfSearchResults !== 0) {
+        this.setState({
+          searchedMovieDetails,
+          totalPages,
+          specificMoviePageContentStatus:
+            specificMoviePageContentStatusConstants.search,
+        })
+      } else {
+        this.setState({
+          specificMoviePageContentStatus:
+            specificMoviePageContentStatusConstants.noresults,
+        })
+      }
+    } else {
+      this.setState({
+        specificMoviePageContentStatus:
+          specificMoviePageContentStatusConstants.initial,
+      })
+    }
+  }
+
+  renderSearchedMovies = () => {
+    const {searchedMovieDetails, pageNumber, totalPages} = this.state
+    return (
+      <div className="specific-search-movies-container">
+        <ul className="specific-search-movies-list-container">
+          {searchedMovieDetails.map(eachMovie => (
+            <MovieCard key={eachMovie.id} movieDetails={eachMovie} />
+          ))}
+        </ul>
+        <div className="specific-search-movie-page-details-container">
+          <button
+            type="button"
+            className="specific-search-movie-page-navigation-button specific-search-movie-page-backward-button"
+            onClick={this.onClickPreviousPage}
+          >
+            &lt;
+          </button>
+          <h1 className="specific-search-movie-page-number">
+            {pageNumber} of {totalPages}
+          </h1>
+          <button
+            type="button"
+            className="specific-search-movie-page-navigation-button specific-search-movie-page-forward-button"
+            onClick={this.onClickNextPage}
+          >
+            &gt;
+          </button>
+        </div>
+      </div>
+    )
   }
 
   getSpecificMovieDetails = async () => {
@@ -96,30 +213,15 @@ class SpecificMovie extends Component {
     this.setState({similarMovieDetails})
   }
 
-  render() {
-    const {specificMovieDetails, similarMovieDetails, isLoading} = this.state
+  renderSpecificMovie() {
+    const {specificMovieDetails, isLoading} = this.state
 
-    const {
-      posterPath,
-      title,
-      overview,
-      audioAvailable,
-      budget,
-      releaseDate,
-      genres,
-      ratingCount,
-      ratingAverage,
-    } = specificMovieDetails
-    const urlPath = `https://image.tmdb.org/t/p/original/${posterPath}`
-    const isSimilarMoviesPresent = similarMovieDetails.length > 0
+    const {title, overview} = specificMovieDetails
 
     return (
       <div className="specific-movie-bg-container">
         {isLoading ? (
           <>
-            <div className="specific-movie-navbar-container">
-              <Navbar />
-            </div>
             <div
               className="specific-movie-loading-bg-container"
               testid="loader"
@@ -129,13 +231,7 @@ class SpecificMovie extends Component {
           </>
         ) : (
           <div>
-            <div
-              className="specific-movie-data-bg-container"
-              style={{backgroundImage: `url(${urlPath})`}}
-            >
-              <div className="specific-movie-navbar-container">
-                <Navbar />
-              </div>
+            <div className="specific-movie-data-bg-container">
               <div className="specific-movie-datas-container">
                 <div className="specific-movie-data-container">
                   <h1 className="specific-movie-title">{title}</h1>
@@ -146,6 +242,102 @@ class SpecificMovie extends Component {
                 </div>
               </div>
             </div>
+          </div>
+        )}
+      </div>
+    )
+  }
+
+  renderNoResultsPage = () => {
+    const {searchMovie} = this.state
+    return (
+      <div className="specific-search-movie-no-results-container">
+        <div className="specific-search-movie-no-results-text-container">
+          <h1 className="specific-search-movie-no-results-text">Uh oh!</h1>
+          <p className="specific-search-movie-no-results-text">
+            Your search for {searchMovie} did not find any matches.
+          </p>
+        </div>
+      </div>
+    )
+  }
+
+  renderCurrentPage = () => {
+    const {specificMoviePageContentStatus} = this.state
+
+    switch (specificMoviePageContentStatus) {
+      case specificMoviePageContentStatusConstants.initial:
+        return this.renderSpecificMovie()
+      case specificMoviePageContentStatusConstants.search:
+        return this.renderSearchedMovies()
+      case specificMoviePageContentStatusConstants.noresults:
+        return this.renderNoResultsPage()
+      default:
+        return null
+    }
+  }
+
+  render() {
+    const {
+      specificMovieDetails,
+      similarMovieDetails,
+      searchMovie,
+      specificMoviePageContentStatus,
+    } = this.state
+
+    const {
+      posterPath,
+      audioAvailable,
+      budget,
+      releaseDate,
+      genres,
+      ratingCount,
+      ratingAverage,
+    } = specificMovieDetails
+
+    const urlPath = `https://image.tmdb.org/t/p/original${posterPath}`
+
+    const isSimilarMoviesPresent = similarMovieDetails.length > 0
+
+    let navbarOpacityClassName
+    if (
+      specificMoviePageContentStatus ===
+      specificMoviePageContentStatusConstants.initial
+    ) {
+      navbarOpacityClassName = 'specific-movie-navbar-container-with-opacity'
+    }
+
+    let specificMoviePageContainerClassName
+    if (
+      specificMoviePageContentStatus !==
+      specificMoviePageContentStatusConstants.initial
+    ) {
+      specificMoviePageContainerClassName =
+        'specific-movie-bg-container-with-bg-color'
+    }
+
+    return (
+      <div
+        className={`specific-movie-bg-container ${specificMoviePageContainerClassName}`}
+      >
+        <div
+          style={{backgroundImage: `url(${urlPath})`, backgroundSize: 'cover'}}
+        >
+          <div
+            className={`specific-movie-navbar-container ${navbarOpacityClassName}`}
+          >
+            <Navbar
+              onSearchMovie={this.onSearchMovie}
+              searchMovie={searchMovie}
+              selectedPage="specificMovie"
+            />
+          </div>
+          <div>{this.renderCurrentPage()}</div>
+        </div>
+
+        {specificMoviePageContentStatus ===
+          specificMoviePageContentStatusConstants.initial && (
+          <>
             <div className="specific-movie-details-container">
               <div className="specific-movie-detail-container">
                 <h1 className="specific-movie-detail-title">Genres</h1>
@@ -189,20 +381,25 @@ class SpecificMovie extends Component {
             </div>
 
             <div className="specific-movie-more-like-this-container">
-              {isSimilarMoviesPresent && (
-                <>
-                  <h1 className="specific-movie-more-like-this-title">
-                    More like this
-                  </h1>
-                  <ul className="specific-movie-more-like-this-list-container">
-                    {similarMovieDetails.map(eachMovie => (
-                      <MovieCard key={eachMovie.id} movieDetails={eachMovie} />
-                    ))}
-                  </ul>
-                </>
-              )}
+              <div className="specific-movie-more-like-this-inner--container">
+                {isSimilarMoviesPresent && (
+                  <>
+                    <h1 className="specific-movie-more-like-this-title">
+                      More like this
+                    </h1>
+                    <ul className="specific-movie-more-like-this-list-container">
+                      {similarMovieDetails.map(eachMovie => (
+                        <MovieCard
+                          key={eachMovie.id}
+                          movieDetails={eachMovie}
+                        />
+                      ))}
+                    </ul>
+                  </>
+                )}
+              </div>
             </div>
-          </div>
+          </>
         )}
       </div>
     )

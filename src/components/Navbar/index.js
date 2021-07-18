@@ -61,13 +61,19 @@ class Navbar extends Component {
     const searchInputClassName = showSearchInputElement
       ? 'navbar-show-input-element'
       : 'navbar-hide-input-element'
-    const searchContainerCLassName = showSearchInputElement
+    const searchContainerClassName = showSearchInputElement
       ? 'navbar-search-container-show-input-element'
       : 'navbar-search-container-hide-input-element'
 
     const showAvatarClickListContainer = onClickAvatarSmallDeviceShowStatus
       ? 'navbar-show-avatar-list-container'
       : 'navbar-hide-avatar-list-container'
+
+    const hideNavbarContentAccountClassName =
+      selectedPage === 'account' ? 'navbar-hide' : null
+
+    const hideNavbarContentLostYourWayClassName =
+      selectedPage === 'lostYourWay' ? 'navbar-hide' : null
 
     const selectedTextHighlightHomeClassName =
       selectedPage === 'home' ? 'navbar-link-text-selected' : null
@@ -84,7 +90,9 @@ class Navbar extends Component {
               <Link className="navbar-link-movies-title" to="/">
                 <h1 className="navbar-movies-text">MOVIES</h1>
               </Link>
-              <div className="navbar-home-popular-container">
+              <div
+                className={`navbar-home-popular-container ${hideNavbarContentLostYourWayClassName}`}
+              >
                 <Link className="navbar-link" to="/">
                   <h1
                     className={`navbar-link-text ${selectedTextHighlightHomeClassName}`}
@@ -102,8 +110,12 @@ class Navbar extends Component {
                 </Link>
               </div>
             </div>
-            <div className="navbar-search-containers">
-              <div className={searchContainerCLassName}>
+            <div
+              className={`navbar-search-containers ${hideNavbarContentLostYourWayClassName}`}
+            >
+              <div
+                className={`${searchContainerClassName} ${hideNavbarContentAccountClassName}`}
+              >
                 <input
                   className={searchInputClassName}
                   type="text"
@@ -131,8 +143,12 @@ class Navbar extends Component {
               </Link>
             </div>
 
-            <div className="navbar-search-containers">
-              <div className={searchContainerCLassName}>
+            <div
+              className={`navbar-search-containers ${hideNavbarContentLostYourWayClassName}`}
+            >
+              <div
+                className={`${searchContainerClassName} ${hideNavbarContentAccountClassName}`}
+              >
                 <input
                   className={searchInputClassName}
                   type="text"
