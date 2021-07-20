@@ -5,7 +5,7 @@
 }
 
 .lost-your-way-container {
-  background-image: url('https://img.freepik.com/free-photo/beautiful-landscape-alpine-ski-slope-with-working-ski-lift_454047-2144.jpg?size=626&ext=jpg');
+  background-image: url('https://res.cloudinary.com/dorixow19/image/upload/v1626774846/lost_your_way_bg_gayscl.png');
   background-size: cover;
   min-height: 90%;
   display: flex;

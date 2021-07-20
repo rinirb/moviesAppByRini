@@ -51,21 +51,6 @@
   align-items: center;
 }
 
-.navbar-movies-text {
-  color: #e50014;
-  font-family: 'San Serif';
-  font-size: 40px;
-}
-
-@media screen and (min-width: 768px) {
-  .navbar-movies-text {
-    color: #e50014;
-    font-family: 'San Serif';
-    font-size: 55px;
-    margin-right: 20px;
-  }
-}
-
 .navbar-home-popular-container {
   display: flex;
   align-items: center;
@@ -228,4 +213,8 @@
 
 .navbar-hide {
   visibility: hidden;
+}
+
+.navbar-movies-title-container {
+  display: flex;
 }

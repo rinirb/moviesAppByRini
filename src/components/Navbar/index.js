@@ -6,6 +6,8 @@ import {AiOutlineSearch, AiFillCloseCircle} from 'react-icons/ai'
 
 import {CgPlayList, CgProfile} from 'react-icons/cg'
 
+import MoviesLogo from '../MoviesLogo'
+
 import './index.css'
 
 class Navbar extends Component {
@@ -88,7 +90,7 @@ class Navbar extends Component {
           <nav className="navbar-container">
             <div className="navbar-links-container">
               <Link className="navbar-link-movies-title" to="/">
-                <h1 className="navbar-movies-text">MOVIES</h1>
+                <MoviesLogo />
               </Link>
               <div
                 className={`navbar-home-popular-container ${hideNavbarContentLostYourWayClassName}`}
@@ -119,6 +121,7 @@ class Navbar extends Component {
                 <input
                   className={searchInputClassName}
                   type="text"
+                  placeholder="Search"
                   value={searchMovie}
                   onChange={this.onChangeSearchMovie}
                   onBlur={this.onBlurSearchMovie}
@@ -139,7 +142,7 @@ class Navbar extends Component {
           <nav className="navbar-container">
             <div className="navbar-links-container">
               <Link className="navbar-link" to="/">
-                <h1 className="navbar-movies-text">MOVIES</h1>
+                <MoviesLogo />
               </Link>
             </div>
 
@@ -152,6 +155,7 @@ class Navbar extends Component {
                 <input
                   className={searchInputClassName}
                   type="text"
+                  placeholder="Search"
                   value={searchMovie}
                   onChange={this.onChangeSearchMovie}
                   onBlur={this.onBlurSearchMovie}

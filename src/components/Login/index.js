@@ -2,6 +2,8 @@ import {Component} from 'react'
 
 import Cookies from 'js-cookie'
 
+import MoviesLogo from '../MoviesLogo'
+
 import './index.css'
 
 class Login extends Component {
@@ -82,42 +84,46 @@ class Login extends Component {
     const {username, password, statusMessage, errorSignIn} = this.state
     return (
       <div className="login-form-bg-container">
-        <h1 className="login-form-movies-title">MOVIES</h1>
-        <form className="login-form-element" onSubmit={this.onSubmitForm}>
-          <h1 className="login-form-sign-in-title">Sign in</h1>
-          <label className="login-form-label-element" htmlFor="username">
-            USERNAME
-          </label>
-          <br />
-          <input
-            className="login-form-input-element"
-            type="text"
-            id="username"
-            placeholder="Enter your username"
-            value={username}
-            onChange={this.onChangeUsername}
-          />
-          <br />
-          <label className="login-form-label-element" htmlFor="password">
-            PASSWORD
-          </label>
-          <br />
-          <input
-            className="login-form-input-element"
-            type="password"
-            id="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={this.onChangePassword}
-          />
-          <br />
-          <button className="input-form-sign-in-button" type="submit">
-            Sign in
-          </button>
-          {errorSignIn && (
-            <p className="login-error-message">{statusMessage}</p>
-          )}
-        </form>
+        <MoviesLogo />
+        <div className="login-form-container">
+          <form className="login-form-element" onSubmit={this.onSubmitForm}>
+            <h1 className="login-form-sign-in-title">Sign in</h1>
+            <label className="login-form-label-element" htmlFor="username">
+              USERNAME
+            </label>
+            <br />
+            <input
+              className="login-form-input-element"
+              type="text"
+              id="username"
+              placeholder="Enter your username"
+              value={username}
+              onChange={this.onChangeUsername}
+            />
+            <br />
+            <label className="login-form-label-element" htmlFor="password">
+              PASSWORD
+            </label>
+            <br />
+            <input
+              className="login-form-input-element"
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={this.onChangePassword}
+            />
+            <br />
+            {errorSignIn && (
+              <p className="login-error-message">{statusMessage}</p>
+            )}
+            <div className="input-form-button-container">
+              <button className="input-form-sign-in-button" type="submit">
+                Sign in
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     )
   }
