@@ -72,7 +72,9 @@ class Navbar extends Component {
       : 'navbar-hide-avatar-list-container'
 
     const hideNavbarContentAccountClassName =
-      selectedPage === 'account' ? 'navbar-hide' : null
+      selectedPage === 'account' || selectedPage === 'specificMovie'
+        ? 'navbar-hide'
+        : null
 
     const hideNavbarContentLostYourWayClassName =
       selectedPage === 'lostYourWay' ? 'navbar-hide' : null

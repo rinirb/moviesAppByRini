@@ -321,6 +321,7 @@ class SpecificMovie extends Component {
         className={`specific-movie-bg-container ${specificMoviePageContainerClassName}`}
       >
         <div
+          className="specific-movie-poster-container"
           style={{backgroundImage: `url(${urlPath})`, backgroundSize: 'cover'}}
         >
           <div
